@@ -1,0 +1,10 @@
+.env
+credentials.json
+oauth_client.json
+token.pickle
+token.pickle.bak*
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+logs/*.log
