@@ -10,7 +10,7 @@ def fetch_insight_query(short_id: str, api_key: str) -> str:
         "cached": "true",
     }
     headers = {"Authorization": f"Bearer {api_key}"}
-    response = requests.get(url, params=params, headers=headers)
+    response = requests.get(url, params=params, headers=headers, timeout=60)
     response.raise_for_status()
     data = response.json()
     if not data.get("results"):
@@ -45,7 +45,7 @@ def execute_hogql(query: str, api_key: str) -> list:
         "Content-Type": "application/json",
     }
     body = {"query": {"kind": "HogQLQuery", "query": query}}
-    response = requests.post(url, json=body, headers=headers)
+    response = requests.post(url, json=body, headers=headers, timeout=180)
     response.raise_for_status()
     return response.json()["results"]
 
